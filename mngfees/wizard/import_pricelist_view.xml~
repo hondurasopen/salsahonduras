@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <!-- Import Inventory Wizard form -->
+        <record id="view_import_priceslist" model="ir.ui.view">
+            <field name="name">import.priceslist</field>
+            <field name="model">import.priceslist</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Importar Lista de Precios">
+		    	
+                    <label string="Se importara la lista de precios por ciudad y producto seleccione el rango de fechas." colspan="4"/>
+                    <group colspan="4" col="4">
+			<group cols="2">
+                        <field name="fecha_inicio" />
+                        <field name="fecha_final"/>
+			<field name="product_id"/>
+			</group>
+			<group cols="2">
+			<field name="data" filename="name" colspan="4" />
+			</group>
+                    </group>
+				
+                   <separator string="" colspan="4"/>
+                   <footer>
+                       <button class="oe_highlight" special="cancel" string="Cancelar"/>
+                        <button name="action_import" string="Importar" type="object"/>
+                   </footer>
+
+               </form>
+            </field>
+        </record>
+
+    <!--  Action of Import Product wizard -->
+    <record id="action_import_pricelist" model="ir.actions.act_window">
+        <field name="name">Importar Precios</field>
+        <field name="res_model">import.priceslist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_import_priceslist"/>
+       <field name="target">new</field>
+    </record>
+
+    </data>
+</openerp>

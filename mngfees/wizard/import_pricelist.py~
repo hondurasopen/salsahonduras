@@ -1,0 +1,21 @@
+from openerp import fields, models, exceptions, api, _
+import base64
+import csv
+import cStringIO
+from openerp.exceptions import except_orm, Warning, RedirectWarning
+
+class Contractwizard(models.TransientModel):
+	_name = "mngfees.coursewizard"
+    	
+	course_id=fields.Many2one("mngfees.course","Course", required=True)
+	section_id = fields.Many2one("mngfees.course","Section", required=True)
+
+	
+	@api.onchange("course_id")
+	def _get_section(self):
+		
+		
+	
+	
+
+	

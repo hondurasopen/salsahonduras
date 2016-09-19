@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="funds_requisition_tree_view">
+            <field name="name">funds.requisition.tree</field>
+            <field name="model">funds.requisition</field>
+            <field name="arch" type="xml">
+                <tree string="Fund Requisition">
+                    <field name="date" />
+                    <field name="reference" />
+                    <field name="name" />
+		<field name="state"/>
+                    <field name="total" sum="Total Amount" />
+                </tree>
+            </field>
+        </record>
+	
+
+        <record model="ir.ui.view" id="funds_requisition_form_view">
+            <field name="name">funds.requisition.form</field>
+            <field name="model">funds.requisition</field>
+            <field name="arch" type="xml">
+                <form string="Fund requisition">
+			 <header>
+				<button name="action_validate" type="object" string="Validate" states="draft" class="oe_highlight oe_read_only"/>
+				<field name="state" widget="statusbar" statusbar_visible="draft,validated" statusbar_colors='{"validated":"blue"}'/>
+                  	</header>
+
+			 <sheet string="Funds Requisition">
+				  <separator string="Fund Requisition"/>
+				    <group colspan="4">
+					<group cols="2">
+				          <field name="name" />
+				           <field name="reference" />
+					<field name="fund_currency"/>
+					</group>
+					<group cols="2">
+					<field name="date"/>
+					   <field name="total"/>
+						 <field name="department_id"/>
+					</group>
+				    </group>
+                   	 </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_fund_requisition_form" model="ir.actions.act_window">
+            <field name="name">Funds Requisition</field>
+            <field name="res_model">funds.requisition</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Funds Requisition</field>
+        </record>
+
+        <menuitem id="fund_requisition_forecast_main" name="Funds Requisitions"
+            parent="financial.finanzas_principal" sequence="8" />
+
+        <menuitem action="action_fund_requisition_form" id="fund_requisition_forecast"
+            parent="fund_requisition_forecast_main"/>
+
+    </data>
+</openerp>

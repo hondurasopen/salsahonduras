@@ -1,0 +1,16 @@
+# -*- encoding: utf-8 -*-
+from openerp import models, fields, api 
+class Session(models.Model):
+	_name="mngfees.section"	
+
+	name=fields.Char("Course Session", required= True )
+	course_id= fields.Many2one("mngfees.course", "Course")
+	start_date= fields.Date("Start Date", required=True)
+	end_date= fields.Date("End Date", required= True)
+	duration= fields. Float("Duration")
+	description= fields.Text("Description and notes")
+	
+
+
+        
+

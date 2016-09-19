@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+	<record model="ir.ui.view" id="view_funds_requisition_search">
+           		 <field name="name">funds.requisition</field>
+           		 <field name="model">funds.requisition</field>
+           		 <field name="arch" type="xml">
+				<search string = 'Buscar'>
+			<filter string="Esperando Aprobar" domain="[('state','!=','done'),('state','!=','reject')]" name="funds_approval"/>
+			<filter string="Fondos Aprobados" name="aprobados" domain="[('state','=','done')]"/>
+				<field name="name" filter_domain="[('name', 'ilike', self)]" string="# Req. Fondo"/>			
+				<field name="name" filter_domain="[('reference', 'ilike', self)]" string="Proveedor"/>
+				<field name="name" filter_domain="[('department_id', 'ilike', self)]" string="Departamento"/>
+					  <group expand="0" string="Group By">
+                       				   <filter string="Mes"  domain="[]" context="{'group_by':'date'}"/>
+                     				   <filter string="Estado" domain="[]" context="{'group_by':'department_id'}"/>
+						    <filter string="Departamento" domain="[]" context="{'group_by':'state'}"/>
+						   <filter string="Proveedor" domain="[]" context="{'group_by':'reference'}"/>
+						    <filter string="Moneda" domain="[]" context="{'group_by':'fund_currency'}"/>	
+                   			 </group>
+				
+				</search>
+			</field>
+		</record>
+	
+        <record model="ir.ui.view" id="view_funds_requisition_graph">
+            <field name="name">funds.requisition.graph</field>
+            <field name="model">funds.requisition</field>
+            <field name="arch" type="xml">
+                <graph string="Funds Requisition" type="bar">
+		    <field name="department_id" type="row"/>
+                    <field name="total" type="measure"/>
+                </graph>
+            </field>
+        </record>
+		
+        <record model="ir.ui.view" id="funds_requisition_tree_view">
+            <field name="name">funds.requisition.tree</field>
+            <field name="model">funds.requisition</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'confirmed';red:state =='reject';black:state =='done'" string="Fund Requisition">
+                    <field name="name" />
+		    <field name="reference"/>
+		    <field name="date" />
+		    <field name="week_number"/>
+		    <field name="total" sum="Total Amount" />
+		    <field name="state"/>
+			<field name="department_id"/>
+		    <field name="fund_currency"/>                    
+                </tree>
+            </field>
+        </record>
+	
+        <record model="ir.ui.view" id="funds_requisition_form_view">
+            <field name="name">funds.requisition.form</field>
+            <field name="model">funds.requisition</field>
+            <field name="arch" type="xml">
+                <form string="Fund requisition">
+	          <header>
+		   <button name="action_draft" type="object" string="Borrador" states="confirmed"/>
+                   <button name="action_confirmed" type="object" string="Solicitar Aprobación" states="draft" class="oe_highlight" />
+		  <button name="action_reject" groups="financial.group_funds_requisition_manager" type="object" string="Rechazar" states="confirmed" class="oe_highlight" confirm="¿Esta seguro que quiere rechazar esta requisición?"/>
+		    <button name="action_approval" groups="financial.group_funds_requisition_manager" type="object" string="Aprobar" states="confirmed" class="oe_highlight oe_read_only"/>
+		    <field name="state" widget="statusbar" nolabel="1"/>
+                  </header>
+		  <sheet string="Funds Requisition">
+		     <h1>
+            		  <field name="name" class="oe_inline"/>
+          	     </h1>
+			<group colspan="2">
+			 <field name="reference" />		
+			
+			</group>
+			<group colspan="4">
+			        <group cols="2">
+				   <field name="total"/>
+				   <field name="fund_currency" widget="selection"/>
+		                 </group>
+				<group cols="2">
+				    <field name="date"/>
+				    <field name="week_number"/>
+				    <field name="department_id" widget="selection"/>
+				</group>
+			 </group>
+                         <group colspan="4">
+			 </group>
+			  <notebook>
+                         <page string="Notas">
+			    <separator string="Notas"/>
+			     <field name="description" colspan="4" placeholder="Agregue notas para esta requisición de fondos..."  height="150"/>
+			</page>
+			</notebook>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_fund_requisition_form" model="ir.actions.act_window">
+            <field name="name">Funds Requisition</field>
+            <field name="res_model">funds.requisition</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+	   <field name="context">{'search_default_funds_approval': 1}</field>
+            <field name="help">Gestión de requisición de fondos a aprobar</field>
+        </record>
+
+        <menuitem id="fund_requisition_forecast_main" name="Funds Requisitions"
+            parent="financial.finanzas_principal" sequence="8" />
+
+        <menuitem action="action_fund_requisition_form" id="fund_requisition_forecast"
+            parent="fund_requisition_forecast_main"/>
+
+    </data>
+</openerp>

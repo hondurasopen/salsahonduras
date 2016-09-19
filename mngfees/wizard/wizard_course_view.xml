@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <!-- Import Inventory Wizard form -->
+        <record id="view_course_wizard" model="ir.ui.view">
+            <field name="name">wizard.course.priceslist</field>
+            <field name="model">mngfees.coursewizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cursos">
+		    	
+                    <label string="Se importara la lista de precios por ciudad y producto seleccione el rango de fechas." colspan="4"/>
+                    <group colspan="4" col="4">
+			<group cols="2">
+                        <field name="course_id" widget="radio" />
+			</group>
+			<group cols="2">
+			<field name="section_id" domain="[('course_id','=',course_id)]" widget="radio"/>
+			</group>
+                    </group>
+				
+                   <separator string="" colspan="4"/>
+                   <footer>
+                       <button class="oe_highlight" special="cancel" string="Cancelar"/>
+                        <button name="action_selection_section" string="Choose" type="object"/>
+                   </footer>
+
+               </form>
+            </field>
+        </record>
+
+    <!--  Action of course wizard -->
+    <record id="action_wizard_course" model="ir.actions.act_window">
+        <field name="name">Selection Course and section</field>
+        <field name="res_model">mngfees.coursewizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+       <field name="view_id" ref="view_course_wizard"/>
+       <field name="target">new</field>
+    </record>
+
+    </data>
+</openerp>

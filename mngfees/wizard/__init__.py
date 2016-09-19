@@ -1,0 +1,2 @@
+import wizard_course
+

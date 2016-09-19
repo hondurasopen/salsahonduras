@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+   <data>
+  <!-- Vista Formulario de Section-->
+   <record model="ir.ui.view" id="mngfees_section_form_view">
+   <field name="name">mngfees.section.form</field>
+   <field name="model">mngfees.sections</field>
+   <field name="arch" type="xml">
+     <form string="Sections Form">
+		<header>
+	<field name="state" widget="statusbar" nolabel="1"/>
+	</header>				
+          <sheet>  
+           <h1>
+              <field name="name" placeholder="Section Name..." class="oe_inline"/>
+          </h1>
+	<separator string="Information"/>
+          <group colspan="4">
+		<group cols="2">  
+			<field name="start_date"/>
+               	 	<field name="end_date"/>
+		</group>
+		<group cols="2">  
+			<field name="duration"/>
+			<field name="course_id"/>
+		</group>
+	   </group>		
+	<notebook>
+	<page string="Description">
+	<field name="description"/>
+	</page>
+	<page>
+	</page>
+	</notebook>
+	</sheet>     
+     </form>
+   </field> 
+   </record>  
+   <!-- Fin de Vista form  -->
+  <!-- Vista Tree de Section-->
+<record model="ir.ui.view" id="mngfees_section_tree_view">
+   <field name="name">mngfees.section.tree</field>
+   <field name="model">mngfees.sections</field>
+   <field name="arch" type="xml">
+       <tree string="Section List">
+                 <field name="name"/>
+          	<field name="start_date"/>
+		<field name="end_date"/>
+		<field name="course_id"/>
+		<field name="state"/>
+       </tree>
+   </field> 
+   </record>
+
+   <!--  Accion para Sections -->
+   <record model="ir.actions.act_window" id="mngfees_sections_action">
+   <field name="name">Sections</field>
+   <field name="res_model">mngfees.sections</field>
+   <field name="view_type">form</field>
+   <field name="view_model">tree,form</field>
+   <field name="help" type="html">
+   <p class="oe_view_nocontent_create">Create first section</p>
+   </field>
+   </record>
+
+	
+   <!-- Menu Principal de Gestion de sections -->
+<menuitem action="mngfees_sections_action" id="mngfees_action_section" parent="mngfees_menu_list" sequence="200"/>
+
+   </data>
+</openerp>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

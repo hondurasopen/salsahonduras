@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+   <data>
+  <!-- Vista Formulario de Topic-->
+   <record model="ir.ui.view" id="mngfees_topic_form_view">
+   <field name="name">mngfees.topic.form</field>
+   <field name="model">mngfees.topic</field>
+   <field name="arch" type="xml">
+     <form string="Topic Form">				
+          <sheet>  
+           <h1>
+              <field name="name" placeholder="Topic Name..." class="oe_inline"/>
+          </h1>
+	<separator string="Information"/>
+          <group colspan="4">
+		<group cols="2">  
+			<field name="code"/>
+               	 	<field name="course_id"/>
+		</group>
+	   </group>		
+	<notebook>
+	<page string="Resource">
+		<field name="resource"/>
+	</page>
+	</notebook>
+		
+	</sheet>     
+     </form>
+   </field> 
+   </record>  
+   <!-- Fin de Vista form  -->
+  <!-- Vista Tree de Curso-->
+<record model="ir.ui.view" id="mngfees_course_tree_view">
+   <field name="name">mngfees.course.tree</field>
+   <field name="model">mngfees.topic</field>
+   <field name="arch" type="xml">
+       <tree string="Courses List">
+                 <field name="name"/>
+          	<field name="code"/>
+		<field name="course_id"/>
+       </tree>
+   </field> 
+   </record>
+
+   <!--  Accion para Cursos -->
+   <record model="ir.actions.act_window" id="mngfees_topic_action">
+   <field name="name">Topic</field>
+   <field name="res_model">mngfees.topic</field>
+   <field name="view_type">form</field>
+   <field name="view_model">tree,form</field>
+   <field name="help" type="html">
+   <p class="oe_view_nocontent_create">Create first topic</p>
+   </field>
+   </record>
+
+	
+   <!-- Menu Principal de Gestion de topic -->
+
+<menuitem id="mngfees_config" name="Configuration" string="Configuration" parent="fees_menu_main" sequence="200"/>
+<menuitem action="mngfees_topic_action" id="mngfees_action_topic" parent="mngfees_config" sequence="100"/>
+
+   </data>
+</openerp>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

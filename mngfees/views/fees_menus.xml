@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+<menuitem id="fees_menu_main" name="Fees Management" string="Fees Management" />
+<menuitem id="mngfees_menu_student" name="Student Management" string="Students" parent="fees_menu_main" sequence="100"/>
+<menuitem id="mngfees_menu_list" name="General" string="General" parent="fees_menu_main" sequence="200"/>
+<menuitem id="mngfees_config" name="Configuration" string="Configuration" parent="fees_menu_main" sequence="300"/>
+
+
+    </data>
+</openerp>

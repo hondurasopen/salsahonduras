@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+ <menuitem id="finanzas_principal" name="Finanzas" string="Finanzas"/>
+    </data>
+</openerp>

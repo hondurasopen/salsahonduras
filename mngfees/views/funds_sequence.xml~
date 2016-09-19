@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- Sequences for hr.employee --> 
+        <record id="seq_fund_requisition1" model="ir.sequence.type">
+            <field name="name">Id Fund Requisition</field>
+            <field name="code">funds</field>
+        </record>
+        <record id="seq_fund_rfq1" model="ir.sequence">
+            <field name="name">Id Fund Requisition</field>
+            <field name="code">funds</field>
+            <field name="prefix">Req. Fondos </field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</openerp>

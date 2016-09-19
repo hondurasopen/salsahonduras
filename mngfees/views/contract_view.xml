@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+   <data>
+  <!-- Vista Formulario de Contratos-->
+   <record model="ir.ui.view" id="mngfees_contractsale_form_view">
+   <field name="name">mngfees.contractsale.form</field>
+   <field name="model">mngfees.contractsale</field>
+   <field name="arch" type="xml">
+     <form string="Contract Forms">
+         <header>
+		<button name="action_draft" type="object" string="Borrador" states="cancel"/>
+		<button name="action_cancel" type="object" string="Cancelar Contrato" states="draft,done" class="oe_highlight" confirm="¿Esta seguro que quiere cancelar el contrato?"/>
+		<button name="action_done" type="object" string="Confirmar Contrato" attrs="{'invisible':['|',('state', '=', 'cancel'),('state', '=', 'done')]}" class="oe_highlight"/>
+		<button name="%(action_wizard_course)d" type="action" string="Course Selection" states="draft"/>
+		<field name="state" widget="statusbar" nolabel="1"/>
+         </header>				
+          <sheet>  
+           <h1>
+              <field name="name" placeholder="No. de Contrato..." class="oe_inline"/>
+          </h1>
+          <group colspan="4">
+               <group cols="2">            
+                <field name="partner_id"/>
+	      </group>
+	      <group cols="2">
+	            <field name="active" />	
+	            <field name="start_date"/>
+                    <field name="end_date"/> 
+	      </group>
+	   </group>		
+	      <notebook>
+	      <page string="Contract Information">
+		
+		<field name="contract_sale_line" >
+        <tree>
+    			<field name="course_id"/>
+    			<field name="section_id"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="fees_quantity"/>
+          <field name="amount"/>
+        </tree>
+		</field>
+	      </page> 
+	      <page string="Notes">
+	        <form>
+		<separator string="Notas"/>
+	           <field name="description" colspan="4" placeholder="Agregue notas para este contrato..."  height="50"/>
+	      </form> 
+	     </page>
+	      
+<!--Entrega parciales-->
+	</notebook>
+	</sheet>     
+     </form>
+   </field> 
+   </record>  
+   <!-- Fin de Vista form  -->
+   <!--  Vista Tree Contratos-->
+    <record model="ir.ui.view" id="mngfees_contractsale_tree_view">
+   <field name="name">mngfees.contractsale.tree</field>
+   <field name="model">mngfees.contractsale</field>
+   <field name="arch" type="xml">
+       <tree string="Fees List" colors="blue:state == 'draft';red:state == 'cancel'">
+             <field name="name"/>
+             <field name="partner_id"/>
+             <field name="start_date"/>
+             <field name="end_date"/>
+	    <field name="total_amount"/> 	 
+	    <field name="state"/>
+       </tree>
+   </field> 
+   </record> 
+   <!--  Accion para Contratos -->
+   <record model="ir.actions.act_window" id="mngfees_contractsale_action">
+   <field name="name">Contracts</field>
+   <field name="res_model">mngfees.contractsale</field>
+   <field name="view_type">form</field>
+   <field name="view_model">tree,form,calendar</field>
+   <field name="help" type="html">
+   <p class="oe_view_nocontent_create">Create first contract</p>
+   </field>
+   </record>
+   <!-- Fin de Action de Contratos -->
+     <!--  Menu Principal de contratos-->
+   <menuitem string="Contract Information"  id="menu_mngfees_contractsale" parent="mngfees_menu_list" action="mngfees_contractsale_action" sequence="1"/>
+   </data>
+</openerp>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+   <data>
+  <!-- Vista Formulario de Cursos-->
+   <record model="ir.ui.view" id="mngfees_course_form_view">
+   <field name="name">mngfees.course.form</field>
+   <field name="model">mngfees.course</field>
+   <field name="arch" type="xml">
+     <form string="Course Form">				
+          <sheet>  
+           <h1>
+              <field name="name" placeholder="Course Name..." class="oe_inline"/>
+          </h1>
+	<separator string="Information"/>
+          <group colspan="4">
+		<group cols="2">  
+			<field name="code"/>
+               	 	<field name="price"/>
+                  <field name="duration"/>
+                  <field  name="product_cat_id"/>
+                  <field name="active"/>
+		</group>
+		<group cols="2"> 			
+      <field name="description"/>
+		</group>
+	   </group>		
+	<notebook>
+	<page string="Sections">
+	<field name="section_ids" nolabel="1" colspan="4" mode="tree">
+ 		<tree string="Sections" colors="blue:state == 'draft';red:state == 'pending'; gray:state == 'done">
+			        <field name="name"/>
+			        <field name="start_date"/>
+      				<field name="end_date"/>
+      				<field name="duration"/>
+      				<field name="state"/>
+	  </tree>	
+	</field>
+	</page>
+	</notebook>
+		
+	</sheet>     
+     </form>
+   </field> 
+   </record>  
+   <!-- Fin de Vista form  -->
+  <!-- Vista Tree de Curso-->
+<record model="ir.ui.view" id="mngfees_course_tree_view">
+   <field name="name">mngfees.course.tree</field>
+   <field name="model">mngfees.course</field>
+   <field name="arch" type="xml">
+       <tree string="Courses List">
+                 <field name="name"/>
+          	<field name="code"/>
+		<field name="price"/>
+		<field name="duration"/>
+       </tree>
+   </field> 
+   </record>
+
+   <!--  Accion para Cursos -->
+   <record model="ir.actions.act_window" id="mngfees_course_action">
+   <field name="name">Courses</field>
+   <field name="res_model">mngfees.course</field>
+   <field name="view_type">form</field>
+   <field name="view_model">tree,form</field>
+   <field name="help" type="html">
+   <p class="oe_view_nocontent_create">Create first course</p>
+   </field>
+   </record>
+
+	
+   <!-- Menu Principal de Gestion de cuotas -->
+
+<menuitem action="mngfees_course_action" id="mngfees_action_course" parent="mngfees_menu_list" sequence="100"/>
+
+   </data>
+</openerp>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
