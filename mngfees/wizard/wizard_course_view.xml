@@ -12,6 +12,7 @@
                     <label string="Se importara la lista de precios por ciudad y producto seleccione el rango de fechas." colspan="4"/>
                     <group colspan="4" col="4">
 			<group cols="2">
+             <field name="generation_date"/>
                         <field name="course_id" widget="radio" />
 			</group>
 			<group cols="2">

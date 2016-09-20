@@ -20,7 +20,7 @@
           </h1>
           <group colspan="4">
                <group cols="2">            
-                <field name="partner_id"/>
+                <field name="partner_id" domain="[('student','=','True')]" />
 	      </group>
 	      <group cols="2">
 	            <field name="active" />	
@@ -39,6 +39,7 @@
           <field name="end_date"/>
           <field name="fees_quantity"/>
           <field name="amount"/>
+          <field name="state"/>
         </tree>
 		</field>
 	      </page> 

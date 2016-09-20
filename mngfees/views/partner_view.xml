@@ -25,7 +25,8 @@
           <field name="arch" type="xml">
             <search string="Search student">
                 <field name="name"/>
-                <filter string="Students" name="mngfees_filter_students" domain="[('student','=',True)]" />        
+                <filter string="Students" name="students" domain="[('student','=',True)]" />        
+                <filter string="Instructors" name="instructors" domain="[('instructor','=',True)]" />        
             </search>
           </field>
         </record>
@@ -36,13 +37,25 @@
           <field name="res_model">res.partner</field>
           <field name="view_type">form</field>
           <field name="view_mode">kanban,tree,form</field>
-          <field name="context">{'default_mngfees_filter_students': 1}</field>
+          <field name="context">{'search_default_students':True}</field>
+          <field name="search_view_id" ref="mngfees_partner_search_view"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="contact2_list_action">
+          <field name="name">Contacts2</field>
+          <field name="res_model">res.partner</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">kanban,tree,form</field>
+          <field name="context">{'search_default_instructors':True}</field>
           <field name="search_view_id" ref="mngfees_partner_search_view"/>
     </record>
 
     <menuitem id="mngfees_contact_action" name="Students"
-                  parent="mngfees_menu_student"
+                  parent="mngfees_menu_person"
                   action="contact_list_action" />
+    <menuitem id="mngfees_contact2_action" name="Instructors"
+                  parent="mngfees_menu_person"
+                  action="contact2_list_action" />
 
 
 	</data>

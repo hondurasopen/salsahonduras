@@ -13,7 +13,7 @@ class Sections(models.Model):
 	end_date= fields.Date("End Date")
 	duration= fields. Float("Duration")
 	description= fields.Text("Description and notes")
-	state= fields.Selection([('draft','Borrador'),('progress','Progress'),('pending','Pendiente'),('done','Done')],string='Estado',default='draft')
+	state= fields.Selection([('draft','Borrador'),('progress','Progress'),('cancel','Cancelada'),('done','Done')],string='Estado',default='draft')
 	description= fields.Text("Description and notes")
 	#contract_id= fields.Many2one("mngfees.contractsale","Contract ID")
                  

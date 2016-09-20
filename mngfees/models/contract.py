@@ -43,7 +43,9 @@ class Contractsaleline(models.Model):
     fees_quantity= fields.Integer("Fees Quantity")
     start_date= fields.Date("Start_date")
     end_date= fields.Date("End date")
-
+    state= fields.Selection([('pending','Pending'), ('confirmed','Confirmed')])
    
-
     
+    _defaults={
+        'state': 'pending'
+    } 
